@@ -1,0 +1,221 @@
+swagger: '2.0'
+info:
+  title: Azure-IoT-Hub-Connector
+  description: Azure IoTHubを経由してデバイスを操作するためのカスタムコネクタです。
+  version: '1.0'
+host: Your-Host-Name.azure-devices.net
+basePath: /
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /devices/{DeviceId}/messages/devicebound:
+    post:
+      responses:
+        '204':
+          description: default
+          schema:
+            type: string
+      summary: Send Cloud to Device Message with IoT Hub
+      operationId: devicebound
+      parameters:
+        - name: DeviceId
+          in: path
+          required: true
+          type: string
+          description: IoT HubのデバイスIdを指定します
+        - name: api-version
+          in: query
+          required: true
+          type: string
+          default: '2021-04-12'
+          x-ms-visibility: internal
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              Message:
+                type: string
+                description: Message
+  /devices:
+    get:
+      responses:
+        '200':
+          description: default
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                  description: deviceId
+                generationId:
+                  type: string
+                  description: generationId
+                etag:
+                  type: string
+                  description: etag
+                connectionState:
+                  type: string
+                  description: connectionState
+                status:
+                  type: string
+                  description: status
+                statusReason:
+                  type: string
+                  description: statusReason
+                connectionStateUpdatedTime:
+                  type: string
+                  description: connectionStateUpdatedTime
+                statusUpdatedTime:
+                  type: string
+                  description: statusUpdatedTime
+                lastActivityTime:
+                  type: string
+                  description: lastActivityTime
+                cloudToDeviceMessageCount:
+                  type: integer
+                  format: int32
+                  description: cloudToDeviceMessageCount
+                authentication:
+                  type: object
+                  properties:
+                    symmetricKey:
+                      type: object
+                      properties:
+                        primaryKey:
+                          type: string
+                          description: primaryKey
+                        secondaryKey:
+                          type: string
+                          description: secondaryKey
+                      description: symmetricKey
+                    x509Thumbprint:
+                      type: object
+                      properties:
+                        primaryThumbprint:
+                          type: string
+                          description: primaryThumbprint
+                        secondaryThumbprint:
+                          type: string
+                          description: secondaryThumbprint
+                      description: x509Thumbprint
+                    type:
+                      type: string
+                      description: type
+                  description: authentication
+          headers:
+            Content-Type:
+              description: Content-Type
+              type: string
+      summary: Get IoT Devices
+      operationId: devices
+      parameters:
+        - name: api-version
+          in: query
+          required: true
+          type: string
+          default: '2021-04-12'
+          x-ms-visibility: internal
+  /twins/{DeviceId}:
+    get:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Get Device Twin
+      operationId: Twin
+      parameters:
+        - name: DeviceId
+          in: path
+          required: true
+          type: string
+        - name: api-version
+          in: query
+          required: true
+          type: string
+          default: '2021-04-12'
+          description: ''
+          x-ms-visibility: internal
+      description: 指定されたデバイスのTwin情報を取得します。
+  /twins/{deviceId}/methods:
+    post:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Invoe device direct method
+      operationId: methods
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          type: string
+        - name: api-version
+          in: query
+          required: true
+          type: string
+          default: '2021-04-12'
+          x-ms-visibility: internal
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              connectTimeoutInSeconds:
+                type: integer
+                format: int32
+                description: connectTimeoutInSeconds
+                title: ''
+                default: 2
+                x-ms-visibility: internal
+              methodName:
+                type: string
+                description: methodName
+                title: ''
+                default: Reboot
+              payload:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    description: Message
+                    title: ''
+                    default: Default
+                description: payload
+                required:
+                  - Message
+              responseTimeoutInSeconds:
+                type: integer
+                format: int32
+                description: responseTimeoutInSeconds
+                title: ''
+                default: 5
+                x-ms-visibility: internal
+            required:
+              - connectTimeoutInSeconds
+              - responseTimeoutInSeconds
+              - methodName
+              - payload
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  API キー:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  - API キー: []
+tags: []
