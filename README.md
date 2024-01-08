@@ -1,12 +1,13 @@
 
 # M5IoTClient_withAzIoTHub
-This is a sample code for connecting M5Stack Core to Azure IoT Hub via MQTT and performing bidirectional communication.
+This is a sample code for connecting M5Stack Core to Azure IoT Hub via MQTT and performing bidirectional communication.  
 This is an example of how to implement it without using Microsoft’s SDK.
 
 # How to use
 1. Place the files in the src folder in your project.
 2. Reflect the contents of the platform.ini file in your project.
-3. Set the parameters in the AzIoTConfig.h file. Use the VSCode extension to get the device name and generate the SASToken.
+3. Set the parameters in the AzIoTConfig.h file.  
+   Use the VSCode extension to get the device name and generate the SASToken.
 4. Build and transfer the program to M5Stack.
 5. Connect the ENV III sensor to M5Stack as the sample code uses it.
 
@@ -18,10 +19,10 @@ This is an example of how to implement it without using Microsoft’s SDK.
 - It updates the device twin properties every 5 minutes.
 
 # Test with VSCode’s IoT Hub extension.
-To send a C2D message, right-click on the device and send a C2D message.
-To execute a direct method, right-click on the device and execute Invoke Direct Method, 
-and enter the method name and request payload.
-To confirm that the device twin properties have been updated, right-click on the device and execute Edit Device Twin.
+To send a C2D message, right-click on the device and send a C2D message.  
+To execute a direct method, right-click on the device and execute Invoke Direct Method,   
+and enter the method name and request payload.  
+To confirm that the device twin properties have been updated, right-click on the device and execute Edit Device Twin.  
 ![](images/2024-01-08-16-22-54.png)
 
 
