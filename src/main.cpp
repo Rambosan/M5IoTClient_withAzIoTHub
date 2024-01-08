@@ -85,7 +85,7 @@ void setup() {
   M5.begin();         // 本体初期化
   lcd.begin();        // 画面初期化
   M5.Power.begin();   // バッテリープロパティ使用
-  Serial.begin(19200); // シリアル通信速度固定 https://qiita.com/Rcobb/items/20ee2a0613d081295327
+  Serial.begin(19200); // シリアル通信速度固定
   lcd.setBrightness(10);
 
   // 温湿度センサーを初期化
