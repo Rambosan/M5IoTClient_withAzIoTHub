@@ -25,6 +25,12 @@ and enter the method name and request payload.
 To confirm that the device twin properties have been updated, right-click on the device and execute Edit Device Twin.  
 ![](images/2024-01-08-16-22-54.png)
 
+# CustomConnector_for_PowerApps
+This is a custom connector configuration file for Power Apps and Power Automate of Microsoft Power Platform.
+You can use the custom connector to execute methods such as GetDevices, SendC2D Message, Invoke DirectMethod via the REST API of IoT Hub.
+To set up, you create a new custom connector and switch the edit mode to Swagger mode, and paste the contents of Swagger.yml.  
+Create a new connection and set the API Key field to the generated SAS Token.
+
 
 # ja-jp
 # M5IoTClient_withAzIoTHub
