@@ -1,5 +1,5 @@
 
-# M5IoTClient_withAzIoTHub
+# M5Stack IoTClient with Azure IoT Hub
 This is a sample code for connecting M5Stack Core to Azure IoT Hub via MQTT and performing bidirectional communication.  
 This is an example of how to implement it without using Microsoft’s SDK.
 
