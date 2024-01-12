@@ -268,7 +268,7 @@ void loop() {
 
     DynamicJsonDocument json(200);
     char data_json[200];
-    json["MQTT_TOPIC"] = "Message From M5Stack";
+    json["Message"] = "Message From M5Stack";
     size_t payloadSize = serializeJson(json, data_json);
 
     // D2Cメッセージをパブリッシュ
